@@ -1,4 +1,2 @@
 # Arcade Game
-===============================
-
-### This is a JavaScript arcade game clone (work in progress)
+**This is a JavaScript arcade game clone (work in progress)**
