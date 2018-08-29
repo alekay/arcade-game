@@ -1,9 +1,11 @@
 "use strict";
 
+// random number function
 function randomNum(max, min) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// Character class object
 class Character{
     constructor(horizontal, vertical, speed){
         this.x = horizontal;
@@ -11,6 +13,7 @@ class Character{
     }
 }
 
+// Enemy class object, extended from Character class object
 class Enemy extends Character {
     constructor(horizontal, vertical, speed) {
         super(horizontal, vertical, speed);
@@ -29,13 +32,12 @@ class Enemy extends Character {
     }
 }
 
-let firstBug = new Enemy;
-let secondBug = new Enemy;
-let thirdBug = new Enemy;
+// These are the new bug Objects
+let firstBug = new Enemy(88, 54, randomNum(600, 150));
+let secondBug = new Enemy(88, 137, randomNum(600, 150));
+let thirdBug = new Enemy(88, 220, randomNum(600, 150));
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Player class object, extended from Character class object
 class Player extends Character {
     constructor() {
         super();
@@ -85,14 +87,14 @@ class Player extends Character {
     }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-let allEnemies = [firstBug, secondBug, thirdBug];
-// Place the player object in a variable called player
+// places the player object in player variable
 let player = new Player();
+// place enemies in allEnemies array
+let allEnemies = [firstBug, secondBug, thirdBug];
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+
+// This listens for key presses and sends the keys
+// Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
