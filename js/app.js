@@ -1,5 +1,3 @@
-"use strict";
-
 // random number function
 function randomNum(max, min) {
     return Math.floor(Math.random() * (max - min)) + min;
