@@ -42,12 +42,16 @@ class Player extends Character {
     constructor() {
         super();
         this.sprite = 'images/char-boy.png';
+        // default position for sprite
         this.x = 202;
         this.y = 386;
     }
     update() {
+        // handle collisions loop
         for(let i = 0; i < 3; i++) {
-            if (Math.abs(player.x - allEnemies[i].x) <= 81 && (player.y === allEnemies[i].y)) {
+            // checks to see if the sprite is in the same place as the enemy
+            if (Math.abs(player.x - allEnemies[i].x) <= 70 && (player.y === allEnemies[i].y)) {
+                // This is where the player resets to if collision condition happens
                 this.x = 202;
                 this.y = 386;
             }
