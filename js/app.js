@@ -3,6 +3,8 @@ function randomNum(max, min) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// set score variable
+let score = 0;
 // Character class object
 class Character{
     constructor(horizontal, vertical, speed){
@@ -43,6 +45,7 @@ class Player extends Character {
         // default position for sprite
         this.x = 202;
         this.y = 386;
+        score = 0;
     }
     update() {
         // handle collisions loop
@@ -52,6 +55,8 @@ class Player extends Character {
                 // This is where the player resets to if collision condition happens
                 this.x = 202;
                 this.y = 386;
+                alert('you died');
+                score = 0;
             }
         }
     }
@@ -66,11 +71,17 @@ class Player extends Character {
                 this.x = 0;
             }
             break;
+            // vertical movement also checks for winning (hitting the water)
             case 'up':
             this.y -= 83;
             if (this.y < -15) {
+                // reset to default position
                 this.y = 386;
                 this.x = 202;
+                // alert for winning
+                alert('You made it!');
+                // increments the score
+                score += 1;
             }
             break;
             case 'right':
@@ -86,14 +97,14 @@ class Player extends Character {
             }
             break;
         }
+        // Display and update scoreboard
+        document.getElementById('score').innerHTML = "Score: " + score;
     }
 }
-
 // places the player object in player variable
 let player = new Player();
 // place enemies in allEnemies array
 let allEnemies = [firstBug, secondBug, thirdBug];
-
 
 // This listens for key presses and sends the keys
 // Player.handleInput() method.

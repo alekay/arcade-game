@@ -1,3 +1,10 @@
 body {
     text-align: center;
 }
+
+#score {
+    font-family: arial;
+    font-size: 1.5rem;
+    padding-top: 35px;
+    margin: 0;
+}
