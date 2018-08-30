@@ -45,7 +45,6 @@ class Player extends Character {
         // default position for sprite
         this.x = 202;
         this.y = 386;
-        score = 0;
     }
     update() {
         // handle collisions loop
@@ -55,8 +54,10 @@ class Player extends Character {
                 // This is where the player resets to if collision condition happens
                 this.x = 202;
                 this.y = 386;
-                alert('you died');
+                // set score at 0
                 score = 0;
+                // have innerHTML update to 0 when collision happens
+                document.getElementById('score').innerHTML = "Score: " + 0;
             }
         }
     }
@@ -67,37 +68,43 @@ class Player extends Character {
         switch(arrowKeys) {
             case 'left':
             this.x -= 101;
+            // sets boundry
             if (this.x < 0) {
                 this.x = 0;
             }
             break;
-            // vertical movement also checks for winning (hitting the water)
             case 'up':
             this.y -= 83;
+            // checks to see if player has hit the water
             if (this.y < -15) {
                 // reset to default position
                 this.y = 386;
                 this.x = 202;
-                // alert for winning
-                alert('You made it!');
                 // increments the score
                 score += 1;
+                // checks to see if player has won (score = 5)
+                if (score === 5) {
+                    alert('Your score is 5, you have won the game!');
+                    score = 0;
+                }
             }
             break;
             case 'right':
-            this.x += 101;
+            this.x += 101
+            // sets boundry;
             if (this.x > 404) {
                 this.x = 404;
             }
             break;
             case 'down':
             this.y += 83;
+            // sets boundry
             if (this.y > 400) {
                 this.y = 386;
             }
             break;
         }
-        // Display and update scoreboard
+        // update scoreboard
         document.getElementById('score').innerHTML = "Score: " + score;
     }
 }
