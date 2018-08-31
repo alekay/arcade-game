@@ -1,5 +1,4 @@
-# Arcade Game
-## Description
+# Description
  - This is an Object Oriented JavaScript 'classic arcade game' clone based off of Frogger.
  - Your character's goal is to get accross the field and to the water.
  - The enemies are bugs that will cross the screen at different speeds everytime they respawn in their respective lanes.
