@@ -11,6 +11,9 @@ class Character{
         this.x = horizontal;
         this.y = vertical;
     }
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
 }
 
 // Enemy class object, extended from Character class object
@@ -24,18 +27,27 @@ class Enemy extends Character {
         this.x += this.speed * dt;
         if (this.x > 515) {
             this.x = -125;
-            this.speed = randomNum(600, 150);
+            this.speed = randomNum(800, 150);
         }
+        this.collisionsDetections()
     }
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    collisionsDetections() {
+        // checks to see if the sprite is in the same place as the enemy
+        if (Math.abs(player.x - this.x) <= 72 && (player.y === this.y)) {
+            // This is where the player resets to
+            player.x = 202;
+            player.y = 386;
+            score = 0;
+            // have innerHTML update to 0 when collision happens
+            document.getElementById('score').innerHTML = "Score: " + 0;
+        }
     }
 }
 
 // These are the new bug Objects
-let firstBug = new Enemy(88, 54, randomNum(600, 150));
-let secondBug = new Enemy(88, 137, randomNum(600, 150));
-let thirdBug = new Enemy(88, 220, randomNum(600, 150));
+let firstBug = new Enemy(88, 54, randomNum(600, 150)),
+    secondBug = new Enemy(88, 137, randomNum(600, 150)),
+    thirdBug = new Enemy(88, 220, randomNum(600, 150));
 
 // Player class object, extended from Character class object
 class Player extends Character {
@@ -46,24 +58,7 @@ class Player extends Character {
         this.x = 202;
         this.y = 386;
     }
-    update() {
-        // handle collisions loop
-        for(let i = 0; i < 3; i++) {
-            // checks to see if the sprite is in the same place as the enemy
-            if (Math.abs(player.x - allEnemies[i].x) <= 70 && (player.y === allEnemies[i].y)) {
-                // This is where the player resets to if collision condition happens
-                this.x = 202;
-                this.y = 386;
-                // set score at 0
-                score = 0;
-                // have innerHTML update to 0 when collision happens
-                document.getElementById('score').innerHTML = "Score: " + 0;
-            }
-        }
-    }
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
+    update(){};
     handleInput(arrowKeys) {
         switch(arrowKeys) {
             case 'left':
