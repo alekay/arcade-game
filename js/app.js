@@ -64,7 +64,7 @@ class Player extends Character {
             case 'left':
             this.x -= 101;
             // sets boundry
-            if (this.x < 0) {
+                if (this.x < 0) {
                 this.x = 0;
             }
             break;
@@ -110,7 +110,7 @@ let allEnemies = [firstBug, secondBug, thirdBug];
 
 // This listens for key presses and sends the keys
 // Player.handleInput() method.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function(e) {    
     var allowedKeys = {
         37: 'left',
         38: 'up',
