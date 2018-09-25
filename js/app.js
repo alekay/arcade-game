@@ -85,7 +85,7 @@ class Player extends Character {
             }
             break;
             case 'right':
-            this.x += 101
+            this.x += 101;
             // sets boundry;
             if (this.x > 404) {
                 this.x = 404;
